@@ -1,0 +1,39 @@
+"""Problem Description:
+
+Given the training data, train a linear regression model and return the weights(coefficients) and w0(intercept).
+Input Format:
+
+The data is passed as a list that is to be converted to a numpy array.
+Output Format:
+
+Return the value of weights and w0 of the model.  
+NOTE: All the values should be rounded up to 2 decimal places, else it might not accept the solution at run-time.
+Sample Output:
+
+[-2.13 -1.53 -0.12]   
+46.46
+Output Explanation:
+
+The first line is the list of weights of the model  and the second line is the value of the w0 of the model. """
+
+Solution:
+
+import numpy as np
+import math
+
+#import Linear Regression class from scikit-learn library
+from sklearn.linear_model import LinearRegression
+
+def coefficientsAndIntercept(xTrain, yTrain):
+  # convert lists into numpy array
+  X_train = np.asarray(xTrain)
+  y_train = np.asarray(yTrain)
+  
+  # initialize linear regression
+  regressor = LinearRegression()
+
+  # fit the model
+  regressor.fit(X_train,y_train)
+
+  #return coefficients and intercepts rounded off upto 2 decimal digits
+  return np.round(regressor.coef_,2),round(regressor.intercept_,2)
