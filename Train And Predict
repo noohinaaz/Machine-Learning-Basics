@@ -1,0 +1,52 @@
+""" Problem Description
+
+Given the fixed acidity, volatile acidity, and residual sugar levels of certain wine samples, predict whether these wine samples are of good or bad quality (Good being y=1 and bad being y=0). Complete the function predict_class(), using the X_train, y_train, and X_test for returning the predictions of wine samples in the X_test.
+
+Instructions:
+1. Import the logistic regression model
+2. Train the Logistic Regression model on the training data.
+3. Predict the classes of the observations present in the test data (X_test).
+4. Return the NumPy array of predictions.
+
+
+Input Format
+
+X_train, y_train, and X_test are all in the form of lists
+
+Output Format
+
+A numpy array of class labels of the same length as of X_test is expected to be returned
+
+Example Input
+
+X_train = [[44, 20, 5], [53, 44, 42], [71, 82, 18], [84, 67, 69], [79, 55, 1], [5, 97, 79], [73, 51, 60], [95, 45, 69], [79, 3, 64], [56, 94, 50], [32, 60, 74], [21, 54, 23], [72, 1, 22], [96, 4, 92], [98, 74, 3]]
+y_train = [0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1]
+X_test = [[94, 31, 74], [7, 48, 18], [19, 67, 18], [30, 88, 1], [87, 35, 36]]
+
+Example Output
+
+[0 1 0 1 0] """
+
+Solution:
+
+import numpy as np
+# import logistic regression model
+from sklearn.linear_model import LogisticRegression
+
+def predict_class(X_train, y_train, X_test):
+    '''X_train, y_train, X_test are all in the form of lists
+       Output -> A numpy array of class labels of the same length as of X_test is expected to be returned'''
+    
+    X_train = np.asarray(X_train)
+    y_train = np.asarray(y_train)
+    X_test = np.asarray(X_test)
+    
+    #initialize the logistic regression model
+    clf = LogisticRegression()
+    
+    #fit the training data on the model
+    clf.fit(X_train,y_train)  
+    
+    #predict the labels of the observations in X_test
+    predictions = clf.predict(X_test)
+    return predictions
