@@ -1,0 +1,45 @@
+"""Error function for logistic regression is
+  represents the probability output by logistic regression model.
+
+Given that Numpy array y_true represents the true labels for each observation, array z represents the  predicted by the logistic regression model before applying the sigmoid, complete the function logloss() to calculate the value of the logloss
+
+Note: The value of logloss should be rounded up to 2 decimals.
+
+Input Format:
+
+Two arrays of representing z - value (multiplication of weights and x) and target variable (y_true)
+Output Format:
+
+Return the loss value (float value) of the model rounded off to two decimal places.
+Sample Input:
+
+z = [3.11, 0.08, 0.76, 5.98, 3.05, 0.12, 8.99, 1.69, 1.75, 1.54] 
+y_true = [1, 0, 1, 0, 0, 0, 1, 1, 0, 1]  
+Sample Output:
+
+1.33
+Output Explanation:
+
+1.33 is the loss calculated by calculating log loss for each observation and then averaged across. """
+
+Solution:
+
+import numpy as np
+def logloss(z, y_true):
+    '''z, y_true are lists
+       output ->  numpy array is expected to be returned
+    '''
+    
+    z = np.asarray(z)
+    y_true = np.asarray(y_true)
+
+    probability = 1 / (1 + np.exp(-z))
+    
+    
+    loss_array = - (y * np.log(probability) + (1 - y_true ) * np.log(1 - probability))
+    
+    # take mean of loss array to get log loss
+    loss = np.mean(loss_array)
+    
+
+    return np.round(loss, 2)
