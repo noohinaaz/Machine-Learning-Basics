@@ -1,0 +1,37 @@
+""" Given a confusion matrix, return True positive rate (TPR), False positive rate (FPR), True negative rate (TNR) and False negative rate (FNR) 
+in the same order rounded off to two decimal places.
+
+
+
+
+Input Format:
+
+A 2d list for the confusion matrix
+Output Format:
+
+A Numpy array of float values rounded off to two decimal places.
+Sample Input:
+
+[[850, 6], [50, 94]]
+Sample Output:
+
+[0.94 0.06 0.94 0.06] """
+
+ Solution: 
+ 
+ mport numpy as np
+def rates_frm_mat(mat):
+    tpr,fpr,tnr,fnr = None,None,None,None
+    tp= mat[1][1]
+    tn= mat[0][0]
+    fp= mat[1][0]
+    fn= mat[0][1]
+    #Calculate true positive rate, false positive rate, true negative rate and false negative rate
+    tpr = tp/(tp+fn)
+    fpr = fp/(fp+tn)
+    tnr = tn/(tn+fp)
+    fnr = fn/(fn+tp)
+    
+    #return a NumPy array with elements tpr, fpr, tnr, fnr all of which are rounded off to two decimal places   
+    return np.array([tpr,fpr,tnr,fnr]).round(2)
+    
