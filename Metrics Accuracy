@@ -1,0 +1,42 @@
+""" Problem Description:
+
+
+
+Create a function that calculates accuracy for the given input arrays.
+
+Accuracy=  
+TotalPrediction
+CorrectPrediction
+​
+ 
+
+Note: After Calculating the accuracy, multiply accuracy with 100 and print the output.
+Do not Use Scikit Learn Functions
+
+Input:
+
+y-true= input array -1 dimensional
+y-pred= input array -1 dimensional
+Output:
+
+A float variable 
+Sample input:
+
+[1 0 2]
+[1 0 1]
+Sample Output:
+
+66.66
+"""
+ 
+ Solution:
+ 
+ import numpy as np
+
+def accuracy_metric(actual, predicted):
+    accuracy =  (np.sum(np.equal(actual, predicted)) / len(actual))* 100
+    
+    
+
+    return accuracy
+    
