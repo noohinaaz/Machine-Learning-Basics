@@ -1,0 +1,58 @@
+""" Problem Description
+
+Given train and test data in the form of lists as arguments of the function errors(), complete the function to return the lists train_errs and test_errs where train_err will consist of the errors in X_train for different values of C in the list c, and test_errs will have the errors for the test data.
+C is basically a hyperparameter in the logistic regression model representing the reciprocal of regularization parameter λ. High values of C cause less regularization which leads the model to overfit on training data, whereas low values of C causes it to underfit.
+
+Note: Here, by error we mean the percentage of misclassified points, converted to decimal.
+
+Input Format
+
+ Four inputs as X_train, y_train, X_test, y_test,c are all in the form of lists
+
+Output Format
+
+ Two lists of train and test errors are expected to be returned
+
+Sample Input:
+
+X_train = [[93, 17], [83, 8], [80, 13], [15, 30], [63, 31], [11, 28], [73, 55], [82, 11], [50, 6], [2, 89]]
+y_train = [0, 0, 1, 0, 1, 1, 1, 1, 0, 1]
+X_test = [[9, 53], [6, 7], [21, 61], [65, 75], [48, 67]]
+y_test = [0, 0, 1, 0, 0]
+c = [0.001, 0.01, 0.1, 1, 10, 100, 1000]
+Sample Output:
+
+train_errs = [0.2, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4]
+test_errs = [0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6] """
+
+Solution:
+
+import numpy as np
+
+#import logistic regression
+from sklearn.linear_model import LogisticRegression
+
+def training_errors(X_train, y_train, X_test, y_test,c):
+    ''' X_train, y_train, X_test, y_test,c are all in the form of lists
+        Output -> Two lists are expected to be returned'''
+    
+    #converting all the lists into Numpy arrays
+    X_train = np.asarray(X_train)  
+    X_test = np.asarray(X_test)  
+    y_train = np.asarray(y_train)  
+    y_test = np.asarray(y_test)  
+    train_errs = list()
+    test_errs = list()
+    
+    for c_value in c:
+        #initialize the logistic regression model
+        clf =   LogisticRegression(C=c_value)
+        
+        #fit the training data on the model
+        clf.fit(X_train,y_train)
+        
+        #append the errors for each value of C for train and test data.
+        train_errs.append(round( 1.0 - clf.score(X_train,y_train), 2) )
+        test_errs.append(round( 1.0 - clf.score(X_test,y_test), 2) )
+    
+    return train_errs,test_errs
